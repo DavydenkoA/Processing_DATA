@@ -6,9 +6,10 @@ from services.progress_bar import ProgressBar
 def get_data(source):
     print(f"Обрабатываю файл: {source}")
     pb = ProgressBar(200, prefix='Обработка')
-    chunk_size = 10000 # строк за раз
+    chunk_size = 10000  # строк за раз
     bearish = 0
     bullish = 0
+
     for chunk in pd.read_csv(source, chunksize=chunk_size, encoding=encode.get_encoding(source)):
         for index, row in chunk.iterrows():
             if row['open'] > row['close']:
